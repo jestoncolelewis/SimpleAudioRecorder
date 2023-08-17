@@ -128,6 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="chunkOptions.h" />
+    <ClInclude Include="recorder.h" />
+    <ClInclude Include="ui.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="recorder.cpp" />
+    <ClCompile Include="ui.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
