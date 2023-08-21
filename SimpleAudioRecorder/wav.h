@@ -36,7 +36,38 @@ public:
 	Wav(string c_id, string c_s, string f, string sc1_id, int sc1_s, int a_f, int n_ch, int s_r, int b_r, int b_a, int b_p_s, string sc2_id, string sc2_s);
 	Wav(const Wav &source);
 	~Wav();
+	
 	void write_as_bytes(ofstream& file, int value, int byte_size);
+
+	// setters
+	void set_chunk_id(string in);
+	void set_chunk_size(string in);
+	void set_format(string in);
+	void set_subchunk1_id(string in);
+	void set_subchunk1_size(int in);
+	void set_audio_format(int in);
+	void set_num_channels(int in);
+	void set_sample_rate(int in);
+	void set_byte_rate(int in);
+	void set_block_align(int in);
+	void set_bit_per_sample(int in);
+	void set_subchunk2_id(string in);
+	void set_subchunk2_size(string in);
+
+	// getters
+	string get_chunk_id();
+	string get_chunk_size();
+	string get_format();
+	string get_subchunk1_id();
+	int get_subchunk1_size();
+	int get_audio_format();
+	int get_num_channels();
+	int get_sample_rate();
+	int get_byte_rate();
+	int get_block_align();
+	int get_bit_per_sample();
+	string get_subchunk2_id();
+	string get_subchunk2_size();
 };
 
 #endif

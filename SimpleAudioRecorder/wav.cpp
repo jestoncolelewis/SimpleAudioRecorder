@@ -34,3 +34,85 @@ Wav::~Wav() {}
 void Wav::write_as_bytes(ofstream& file, int value, int byte_size) {
 	file.write(reinterpret_cast<const char*>(&value), byte_size);
 }
+
+// setters
+void Wav::set_chunk_id(string in) {
+	chunk_id = in;
+}
+void Wav::set_chunk_size(string in) {
+	chunk_size = in;
+}
+void Wav::set_format(string in) {
+	format = in;
+}
+void Wav::set_subchunk1_id(string in) {
+	subchunk1_id = in;
+}
+void Wav::set_subchunk1_size(int in) {
+	subchunk1_size = in;
+}
+void Wav::set_audio_format(int in) {
+	audio_format = in;
+}
+void Wav::set_num_channels(int in) {
+	num_channels = in;
+}
+void Wav::set_sample_rate(int in) {
+	sample_rate = in;
+}
+void Wav::set_byte_rate(int in) {
+	byte_rate = in;
+}
+void Wav::set_block_align(int in) {
+	block_align = in;
+}
+void Wav::set_bit_per_sample(int in) {
+	bits_per_sample = in;
+}
+void Wav::set_subchunk2_id(string in) {
+	subchunk2_id = in;
+}
+void Wav::set_subchunk2_size(string in) {
+	subchunk2_size = in;
+}
+
+// getters
+string Wav::get_chunk_id() {
+	return chunk_id;
+}
+string Wav::get_chunk_size() {
+	return chunk_size;
+}
+string Wav::get_format() {
+	return format;
+}
+string Wav::get_subchunk1_id() {
+	return subchunk1_id;
+}
+int Wav::get_subchunk1_size() {
+	return subchunk1_size;
+}
+int Wav::get_audio_format() {
+	return audio_format;
+}
+int Wav::get_num_channels() {
+	return num_channels;
+}
+int Wav::get_sample_rate() {
+	return sample_rate;
+}
+int Wav::get_byte_rate() {
+	return byte_rate;
+}
+int Wav::get_block_align() {
+	return block_align;
+}
+int Wav::get_bit_per_sample() {
+	return bits_per_sample;
+}
+string Wav::get_subchunk2_id() {
+	return subchunk2_id;
+}
+string Wav::get_subchunk2_size() {
+	return subchunk2_size;
+}
