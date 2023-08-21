@@ -6,9 +6,13 @@
 //
 
 #include <iostream>
+#include "recorder.h"
+
+using namespace std;
 
 int main(int argc, const char* argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    Recorder recorder;
+    recorder.start();
+
     return 0;
 }
