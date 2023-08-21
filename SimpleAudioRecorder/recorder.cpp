@@ -8,17 +8,22 @@
 #include "recorder.h"
 #include "wav.h"
 
-// MARK: constructors & destructors
-Recorder::Recorder() {}
+// constructors & destructors
+Recorder::Recorder() {
+    recording_status = false;
+}
 
-Recorder::Recorder(int c, int s, int b, ChunkOptions chunk) : channels(c), sampleRate(s), bitDepth(b), chunkSize(chunk) {}
+// Recorder::Recorder(int c, int s, int b, ChunkOptions chunk) : channels(c), sampleRate(s), bitDepth(b), chunkSize(chunk) {}
 
-Recorder::Recorder(const Recorder& source) : channels(source.channels), sampleRate(source.sampleRate), bitDepth(source.bitDepth), chunkSize(source.chunkSize) {}
+Recorder::Recorder(const Recorder& source) /* : channels(source.channels), sampleRate(source.sampleRate), bitDepth(source.bitDepth), chunkSize(source.chunkSize) */ {
+    recording_status = source.recording_status;
+}
 
 Recorder::~Recorder() {}
 
-// MARK: methods
+// methods
 void Recorder::start() {
+    set_recording_status(true);
     Wav wav_data;
     ofstream wav;
     wav.open("test.wav", ios::binary);
@@ -44,7 +49,8 @@ void Recorder::start() {
 
         int start_audio = wav.tellp();
 
-        for (int i = 0; i < wav_data.get_sample_rate() * 2; ++i) { // convert to for loop for continuos recording?
+        int i = 0;
+        while (get_recording_status()) { // convert to while loop for continuos recording?
             double amplitude = (double)i / wav_data.get_sample_rate() * 32767; // replace 32767
             double value = sin((2 * 3.14 * i * 250) / wav_data.get_sample_rate()); // replace 250
 
@@ -53,6 +59,9 @@ void Recorder::start() {
 
             wav_data.write_as_bytes(wav, channel1, 2);
             wav_data.write_as_bytes(wav, channel2, 2);
+            ++i;
+            if (i == wav_data.get_sample_rate() * 2) // remove for production
+                this->stop();
         }
 
         int end_audio = wav.tellp();
@@ -64,41 +73,39 @@ void Recorder::start() {
     }
     wav.close();
 
-}
-
-void Recorder::stop() {
     std::cout << "Recording stopped" << std::endl;
 }
 
-// MARK: setters & getters
-void Recorder::setChannels(int in) {
-    channels = in;
+void Recorder::stop() {
+    set_recording_status(false);
 }
 
+// setters & getters
+/* void Recorder::setChannels(int in) {
+    channels = in;
+}
 void Recorder::setSampleRate(int in) {
     sampleRate = in;
 }
-
 void Recorder::setBitDepth(int in) {
     bitDepth = in;
 }
-
 void Recorder::setChunkSize(ChunkOptions in) {
     chunkSize = in;
+} */
+void Recorder::set_recording_status(bool in) {
+    recording_status = in;
 }
 
-int Recorder::getChannels() {
+/* int Recorder::getChannels() {
     return channels;
 }
-
 int Recorder::getSampleRate() {
     return sampleRate;
 }
-
 int Recorder::getBitDepth() {
     return bitDepth;
 }
-
 ChunkOptions Recorder::getChunkSize() {
     int chunk_int;
     switch (chunkSize) {
@@ -119,4 +126,7 @@ ChunkOptions Recorder::getChunkSize() {
         break;
     }
     return chunkSize;
+} */
+bool Recorder::get_recording_status() {
+    return recording_status;
 }
