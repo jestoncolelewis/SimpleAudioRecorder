@@ -23,6 +23,7 @@ class Recorder {
 
 public:
     // MARK: constructors & destructors
+    Recorder();
     Recorder(int c, int s, int b, ChunkOptions chunk);
     Recorder(const Recorder& source);
     ~Recorder();
